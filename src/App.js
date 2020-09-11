@@ -65,7 +65,7 @@ function App() {
 
 		setTimeout(() => {
 			setClicked(true);
-		}, 500);
+		}, 800);
 	};
 
 	return (
@@ -107,7 +107,10 @@ function App() {
 													<td>
 														{data.age}
 														<Link to={`edit/${data.Id}`}>
-															<button className="edit btn btn-primary" key={data.Id}>
+															<button
+																className="float-right btn btn-primary mr-2"
+																key={data.Id}
+															>
 																Edit
 															</button>
 														</Link>
@@ -136,7 +139,7 @@ function App() {
 									</table>
 									<button
 										type="submit"
-										className="btn btn-success btn-lg float-right "
+										className="btn btn-success btn-lg float-right mb-5 "
 										onClick={handleSubmit}
 									>
 										Submit
