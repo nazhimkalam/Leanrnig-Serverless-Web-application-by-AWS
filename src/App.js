@@ -67,6 +67,11 @@ function App() {
 		}, 800);
 	};
 
+	// Handling the DELETE request
+	const handleDelete = (Id) => {
+		console.log(Id);
+	};
+
 	return (
 		<div className="app">
 			{loading ? (
@@ -105,13 +110,11 @@ function App() {
 													<td>{data.name}</td>
 													<td>
 														{data.age}
+														<button className="float-right btn btn-danger mr-2" onClick={() => handleDelete(data.Id)}>
+															Delete
+														</button>
 														<Link to={`edit/${data.Id}`}>
-															<button
-																className="float-right btn btn-primary mr-2"
-																key={data.Id}
-															>
-																Edit
-															</button>
+															<button className="float-right btn btn-primary mr-2">Edit</button>
 														</Link>
 													</td>
 												</tr>
@@ -119,11 +122,7 @@ function App() {
 											<tr>
 												<th scope="row">{fetchedData?.length + 1}</th>
 												<td>
-													<input
-														type="text"
-														value={inputName}
-														onChange={(e) => setInputName(e.target.value)}
-													/>
+													<input type="text" value={inputName} onChange={(e) => setInputName(e.target.value)} />
 												</td>
 												<td>
 													<input
@@ -136,11 +135,7 @@ function App() {
 											</tr>
 										</tbody>
 									</table>
-									<button
-										type="submit"
-										className="btn btn-success btn-lg float-right mb-5 "
-										onClick={handleSubmit}
-									>
+									<button type="submit" className="btn btn-success btn-lg float-right mb-5 mr-3" onClick={handleSubmit}>
 										Submit
 									</button>
 								</div>
