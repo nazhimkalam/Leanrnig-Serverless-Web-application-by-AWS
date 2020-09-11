@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import ContactsIcon from '@material-ui/icons/Contacts';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Edit from './Edit/Edit';
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -8,6 +10,7 @@ function App() {
 	const [inputAge, setInputAge] = useState(0);
 	const [fetchedData, setFetchedData] = useState([]);
 	const [clicked, setClicked] = useState(false);
+	const [selectedRowEdit, setSelectedRowEdit] = useState();
 
 	useEffect(() => {
 		// have to use a UseEffect for fetching data purposes
@@ -73,54 +76,75 @@ function App() {
 				</div>
 			) : (
 				<div className="container mt-5">
-					<h2 className="mb-4 d-flex">
-						Details of Students
-						<div className="ml-2">
-							<ContactsIcon fontSize="large" />
-						</div>
-					</h2>
-					<table className="table table-striped">
-						<thead>
-							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">Name</th>
-								<th scope="col">Age</th>
-							</tr>
-						</thead>
-						<tbody>
-							{fetchedData?.map((data) => (
-								<tr key={data.Id}>
-									<th scope="row">{data.Id}</th>
-									<td>{data.name}</td>
-									<td>
-										{data.age}
-										<button className="edit btn btn-primary">Edit</button>
-									</td>
-								</tr>
-							))}
-							<tr>
-								<th scope="row">{fetchedData?.length + 1}</th>
-								<td>
-									<input
-										type="text"
-										value={inputName}
-										onChange={(e) => setInputName(e.target.value)}
-									/>
-								</td>
-								<td>
-									<input
-										size={2}
-										type="number"
-										value={inputAge}
-										onChange={(e) => setInputAge(e.target.value)}
-									/>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<button type="submit" className="btn btn-success btn-lg float-right " onClick={handleSubmit}>
-						Submit
-					</button>
+					<Router>
+						<h2 className="mb-4 d-flex">
+							Details of Students
+							<div className="ml-2">
+								<ContactsIcon fontSize="large" />
+							</div>
+						</h2>
+
+						<Switch>
+							<Route path="/edit/:Id">
+								<Edit />
+							</Route>
+
+							<Route path="/">
+								<div>
+									<table className="table table-striped">
+										<thead>
+											<tr>
+												<th scope="col">ID</th>
+												<th scope="col">Name</th>
+												<th scope="col">Age</th>
+											</tr>
+										</thead>
+										<tbody>
+											{fetchedData?.map((data) => (
+												<tr key={data.Id}>
+													<th scope="row">{data.Id}</th>
+													<td>{data.name}</td>
+													<td>
+														{data.age}
+														<Link to={`edit/${data.Id}`}>
+															<button className="edit btn btn-primary" key={data.Id}>
+																Edit
+															</button>
+														</Link>
+													</td>
+												</tr>
+											))}
+											<tr>
+												<th scope="row">{fetchedData?.length + 1}</th>
+												<td>
+													<input
+														type="text"
+														value={inputName}
+														onChange={(e) => setInputName(e.target.value)}
+													/>
+												</td>
+												<td>
+													<input
+														size={2}
+														type="number"
+														value={inputAge}
+														onChange={(e) => setInputAge(e.target.value)}
+													/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<button
+										type="submit"
+										className="btn btn-success btn-lg float-right "
+										onClick={handleSubmit}
+									>
+										Submit
+									</button>
+								</div>
+							</Route>
+						</Switch>
+					</Router>
 				</div>
 			)}
 		</div>
