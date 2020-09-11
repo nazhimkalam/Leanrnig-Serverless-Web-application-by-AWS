@@ -74,11 +74,10 @@ function App() {
 			) : (
 				<div className="container mt-5">
 					<h2 className="mb-4 d-flex">
-						Details of Students{' '}
+						Details of Students
 						<div className="ml-2">
-							{' '}
 							<ContactsIcon fontSize="large" />
-						</div>{' '}
+						</div>
 					</h2>
 					<table className="table table-striped">
 						<thead>
