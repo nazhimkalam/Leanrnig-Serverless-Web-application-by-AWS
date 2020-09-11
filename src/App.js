@@ -10,7 +10,6 @@ function App() {
 	const [inputAge, setInputAge] = useState(0);
 	const [fetchedData, setFetchedData] = useState([]);
 	const [clicked, setClicked] = useState(false);
-	const [selectedRowEdit, setSelectedRowEdit] = useState();
 
 	useEffect(() => {
 		// have to use a UseEffect for fetching data purposes
@@ -86,7 +85,7 @@ function App() {
 
 						<Switch>
 							<Route path="/edit/:Id">
-								<Edit />
+								<Edit fetchedData={fetchedData} />
 							</Route>
 
 							<Route path="/">
