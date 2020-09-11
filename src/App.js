@@ -93,7 +93,10 @@ function App() {
 								<tr key={data.Id}>
 									<th scope="row">{data.Id}</th>
 									<td>{data.name}</td>
-									<td>{data.age}</td>
+									<td>
+										{data.age}
+										<button className="edit btn btn-primary">Edit</button>
+									</td>
 								</tr>
 							))}
 							<tr>

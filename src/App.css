@@ -1,5 +1,10 @@
-.app__loading{
-  display: grid;
-  place-items: center;
-  height: 100vh;
+.app__loading {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+}
+
+.edit {
+  position: relative;
+  left: 400px;
 }
