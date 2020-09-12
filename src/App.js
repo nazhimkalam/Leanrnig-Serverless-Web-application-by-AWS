@@ -67,6 +67,10 @@ function App() {
 		}, 800);
 	};
 
+	const handleEdit = () => {
+		setClicked(true);
+	};
+
 	// Handling the DELETE request
 	const handleDelete = (Id) => {
 		console.log(Id);
@@ -90,7 +94,7 @@ function App() {
 
 						<Switch>
 							<Route path="/edit/:Id">
-								<Edit fetchedData={fetchedData} />
+								<Edit fetchedData={fetchedData} setClicked={setClicked} />
 							</Route>
 
 							<Route path="/">
@@ -114,7 +118,9 @@ function App() {
 															Delete
 														</button>
 														<Link to={`edit/${data.Id}`}>
-															<button className="float-right btn btn-primary mr-2">Edit</button>
+															<button className="float-right btn btn-primary mr-2" onClick={handleEdit}>
+																Edit
+															</button>
 														</Link>
 													</td>
 												</tr>

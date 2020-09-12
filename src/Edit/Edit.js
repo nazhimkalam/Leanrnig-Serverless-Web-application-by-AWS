@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Edit.css';
+import '../App.css';
 import { useParams, Link, useHistory } from 'react-router-dom';
 
-function Edit({ fetchedData }) {
+function Edit({ fetchedData, setClicked }) {
 	const { Id } = useParams(); // this will fetch the parameters of the URL
 	const data = fetchedData[Id - 1]; // Student's details
 
@@ -33,7 +34,7 @@ function Edit({ fetchedData }) {
 				age: parseInt(inputAge),
 			}),
 		});
-
+		setClicked(true);
 		history.push('/');
 	};
 
@@ -42,13 +43,13 @@ function Edit({ fetchedData }) {
 			<div className="container">
 				<div className="card mt-5 p-4 ">
 					<form>
-						<div class="form-group">
+						<div className="form-group">
 							<label for="name">
 								<h5>Name</h5>
 							</label>
 							<input
 								type="text"
-								class="form-control"
+								className="form-control"
 								id="name"
 								placeholder="Name"
 								value={inputName}
@@ -61,7 +62,7 @@ function Edit({ fetchedData }) {
 							</label>
 							<input
 								type="number"
-								class="form-control"
+								className="form-control"
 								id="age"
 								placeholder="Age"
 								value={inputAge}
