@@ -3,7 +3,7 @@
 const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
 
-exports.handler = function (event, context, callback) {
+exports.handler  = (event, context, callback) => {
 	const Id = event.Id;
 	const Sname = event.Sname;
 	const age = event.age;
