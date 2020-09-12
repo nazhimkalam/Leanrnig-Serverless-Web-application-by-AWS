@@ -11,18 +11,29 @@ function Edit({ fetchedData }) {
 	const history = useHistory();
 
 	useEffect(() => {
-		setInputName(data?.name);
+		setInputName(data?.Sname);
 		setInputAge(data?.age);
 	}, [data]);
 
-	const handleUpdate = (e) => {
-        e.preventDefault();
-		history.push('/');
-
-	};
-
-	const handleExit = (e) => {
+	const handleUpdate = async (e) => {
 		e.preventDefault();
+
+		// UPDATING the entered data
+		await fetch('https://xl28ge6f91.execute-api.us-east-1.amazonaws.com/dev', {
+			method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+			mode: 'cors', // no-cors, *cors, same-origin
+			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+			credentials: 'same-origin', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				Id: parseInt(Id),
+				Sname: inputName,
+				age: parseInt(inputAge),
+			}),
+		});
+
 		history.push('/');
 	};
 
@@ -62,9 +73,7 @@ function Edit({ fetchedData }) {
 							Update
 						</button>
 						<Link to="/">
-							<button className="btn btn-secondary float-right mr-2" onClick={handleExit}>
-								Back
-							</button>
+							<button className="btn btn-secondary float-right mr-2">Back</button>
 						</Link>
 					</form>
 				</div>

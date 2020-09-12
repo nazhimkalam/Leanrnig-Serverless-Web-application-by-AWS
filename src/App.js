@@ -53,7 +53,7 @@ function App() {
 			},
 			body: JSON.stringify({
 				Id: fetchedData.length + 1,
-				name: inputName,
+				Sname: inputName,
 				age: inputAge,
 			}),
 		});
@@ -107,7 +107,7 @@ function App() {
 											{fetchedData?.map((data) => (
 												<tr key={data.Id}>
 													<th scope="row">{data.Id}</th>
-													<td>{data.name}</td>
+													<td>{data.Sname}</td>
 													<td>
 														{data.age}
 														<button className="float-right btn btn-danger mr-2" onClick={() => handleDelete(data.Id)}>

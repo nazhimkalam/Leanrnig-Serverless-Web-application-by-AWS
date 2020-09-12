@@ -10,7 +10,7 @@ exports.handler = (event, context, callback) => {
 		TableName: tableName,
 		Item: {
 			Id: event.Id,
-			name: event.name,
+			Sname: event.Sname,
 			age: event.age,
 		},
 	};
