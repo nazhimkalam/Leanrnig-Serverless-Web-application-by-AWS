@@ -67,13 +67,21 @@ function App() {
 		}, 800);
 	};
 
-	const handleEdit = () => {
-		setClicked(true);
-	};
-
 	// Handling the DELETE request
 	const handleDelete = (Id) => {
-		console.log(Id);
+		fetch('https://xl28ge6f91.execute-api.us-east-1.amazonaws.com/dev', {
+			method: 'DELETE',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				Id: Id,
+			}),
+		});
+		setTimeout(() => {
+			setClicked(true);
+		}, 800);
 	};
 
 	return (
@@ -118,9 +126,7 @@ function App() {
 															Delete
 														</button>
 														<Link to={`edit/${data.Id}`}>
-															<button className="float-right btn btn-primary mr-2" onClick={handleEdit}>
-																Edit
-															</button>
+															<button className="float-right btn btn-primary mr-2">Edit</button>
 														</Link>
 													</td>
 												</tr>
