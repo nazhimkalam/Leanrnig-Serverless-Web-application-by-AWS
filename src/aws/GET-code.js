@@ -1,7 +1,7 @@
 // GET all 
 
 const AWS = require('aws-sdk');
-const client = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
+const docClient = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
 
 exports.handler = function (event, context, callback) {
 	const scanningParams = {
@@ -9,7 +9,7 @@ exports.handler = function (event, context, callback) {
 		TableName: 'StudentDetails',
 	};
 
-	client.scan(scanningParams, function (err, data) {
+	docClient.scan(scanningParams, function (err, data) {
 		// scanning
 
 		if (err) {
